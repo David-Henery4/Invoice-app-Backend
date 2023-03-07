@@ -6,10 +6,6 @@ const invoiceSchema = new mongoose.Schema({
     required: true,
     ref: "User",
   },
-  refNum: {
-    type: String,
-    required: true,
-  },
   createdAt: {
     type: String,
     required: true,

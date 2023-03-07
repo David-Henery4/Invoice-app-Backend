@@ -6,8 +6,8 @@ const invoicesController = require("../controllers/invoicesController");
 router.route("/")
   .get(invoicesController.getAllInvoices)
   .post(invoicesController.createNewInvoice)
-  .patch()
-  .delete()
+  .patch(invoicesController.editInvoice)
+  .delete(invoicesController.deleteInvoice)
 
 
 
