@@ -2,6 +2,10 @@ const express = require("express");
 const { model } = require("mongoose");
 const router = express.Router();
 const invoicesController = require("../controllers/invoicesController");
+const verifyJWT = require("../middleware/verifyJWT");
+
+//Applies it to all the routes below
+router.use(verifyJWT);
 
 router.route("/")
   .get(invoicesController.getAllInvoices)

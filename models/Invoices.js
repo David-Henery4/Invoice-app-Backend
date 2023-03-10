@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 
+// MIGHT NEED TO RE-ADD A ID PROPERTY/ or REFNUM
+
 const invoiceSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
