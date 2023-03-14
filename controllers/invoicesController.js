@@ -10,13 +10,13 @@ const getAllInvoices = asyncHandler(async (req, res) => {
   // Might need id to get specific invoices for a user
   // might do this though a query string!
   // const invoices = await Invoice.find({
-  //   user: "6405081b7cf3b3bb590a87bb",
+  //   user: "640b470595ac487eb22afd31",
   // }).lean();
   const invoices = await Invoice.find().lean();
 
-  if (!invoices?.length) {
-    return res.status(400).json({ message: "no invoices found" });
-  }
+  // if (!invoices?.length) {
+  //   return res.status(400).json({ message: "no invoices found" });
+  // }
 
   res.json(invoices);
 });
