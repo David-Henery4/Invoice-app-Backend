@@ -1,4 +1,5 @@
 const User = require("../models/User");
+const Invoice = require("../models/Invoices")
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const asyncHandler = require("express-async-handler");
@@ -48,13 +49,19 @@ const login = asyncHandler(async (req, res) => {
     maxAge: 7 * 24 * 60 * 60 * 1000, // cookie expiry set to match refresh tokken (here is 7days)
   });
 
+  // GET USERS INVOICE DATA TO DISPLAY READY ON LOGIN.
+  const invoices = await Invoice.find().lean();
+
   // send accessToken containing Username
   // (Might add an ID?) Although that might be in the user route
   // res.json({ accessToken });
   res.json({
-    _id: foundUser.id,
-    username: foundUser.username,
-    accessToken,
+    user: {
+      _id: foundUser.id,
+      username: foundUser.username,
+      accessToken,
+    },
+    invoices
   });
   // client recieves the access token
   // the server sets the cookie
