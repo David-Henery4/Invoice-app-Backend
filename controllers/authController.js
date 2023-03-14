@@ -31,7 +31,7 @@ const login = asyncHandler(async (req, res) => {
       },
     },
     process.env.ACCESS_TOKEN_SECRET,
-    { expiresIn: "1m" } // 15mins in prod
+    { expiresIn: "10s" } // 15mins in prod
   );
 
   const refreshToken = jwt.sign(
@@ -69,6 +69,7 @@ const login = asyncHandler(async (req, res) => {
 // access: public - because access token has expired
 const refresh = (req, res) => {
   // expect cookie with request
+  console.log(req.cookies)
   const cookies = req.cookies;
   
   if (!cookies?.jwt) return res.status(401).json({ message: "Unauthorized" });
