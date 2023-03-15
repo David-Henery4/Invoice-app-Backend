@@ -33,7 +33,7 @@ const createNewInvoice = asyncHandler(async (req, res) => {
   const { id } = req.body;
   // Need user ID (or something else) from user
   // The one created by mongo
-  // const newInvoiceData = { ...req.body, user: "6407c71f3d8f7d221cf16c03" };
+  // const newInvoiceData = { ...req.body, userId: "6407c71f3d8f7d221cf16c03" };
   const newInvoiceData = { ...req.body };
 
   const duplicate = await Invoice.findOne({ id }).lean().exec();

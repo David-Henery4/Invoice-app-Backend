@@ -51,7 +51,11 @@ const login = asyncHandler(async (req, res) => {
 
   // GET USERS INVOICE DATA TO DISPLAY READY ON LOGIN.
   // STILL NEED TO GET BY USERSID
-  const invoices = await Invoice.find().lean();
+  // const invoices = await Invoice.find().lean();
+  // 6409d809553336a2da18f6e4
+  const invoices = await Invoice.find({
+    userId: foundUser._id,
+  }).lean();
 
   // send accessToken containing Username
   // (Might add an ID?) Although that might be in the user route
@@ -62,7 +66,7 @@ const login = asyncHandler(async (req, res) => {
       username: foundUser.username,
       accessToken,
     },
-    invoices
+    invoices,
   });
   // client recieves the access token
   // the server sets the cookie
