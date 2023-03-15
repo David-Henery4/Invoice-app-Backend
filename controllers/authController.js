@@ -32,7 +32,7 @@ const login = asyncHandler(async (req, res) => {
       },
     },
     process.env.ACCESS_TOKEN_SECRET,
-    { expiresIn: "5s" } // 15mins in prod
+    { expiresIn: "15m" } // 15mins in prod
   );
 
   const refreshToken = jwt.sign(
@@ -50,6 +50,7 @@ const login = asyncHandler(async (req, res) => {
   });
 
   // GET USERS INVOICE DATA TO DISPLAY READY ON LOGIN.
+  // STILL NEED TO GET BY USERSID
   const invoices = await Invoice.find().lean();
 
   // send accessToken containing Username
