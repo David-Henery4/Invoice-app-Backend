@@ -7,17 +7,14 @@ const asyncHandler = require("express-async-handler");
 // get /invoices
 // access: private
 const getAllInvoices = asyncHandler(async (req, res) => {
-  // Might need id to get specific invoices for a user
-  // might do this though a query string!
-  // const invoices = await Invoice.find({
-  //   user: "640b470595ac487eb22afd31",
-  // }).lean();
-  const invoices = await Invoice.find().lean();
-
+  const {userId} = req.params
+  const invoices = await Invoice.find({
+    userId,
+  }).lean();
+  // const invoices = await Invoice.find().lean();
   // if (!invoices?.length) {
   //   return res.status(400).json({ message: "no invoices found" });
   // }
-
   res.json(invoices);
 });
 

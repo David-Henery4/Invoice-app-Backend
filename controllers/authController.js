@@ -50,9 +50,6 @@ const login = asyncHandler(async (req, res) => {
   });
 
   // GET USERS INVOICE DATA TO DISPLAY READY ON LOGIN.
-  // STILL NEED TO GET BY USERSID
-  // const invoices = await Invoice.find().lean();
-  // 6409d809553336a2da18f6e4
   const invoices = await Invoice.find({
     userId: foundUser._id,
   }).lean();
