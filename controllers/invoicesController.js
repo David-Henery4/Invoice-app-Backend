@@ -27,21 +27,22 @@ const getAllInvoices = asyncHandler(async (req, res) => {
 // post /invoices
 // access: private
 const createNewInvoice = asyncHandler(async (req, res) => {
-  const { id } = req.body;
+  const { invoiceId, userId } = req.body;
   // Need user ID (or something else) from user
   // The one created by mongo
   // const newInvoiceData = { ...req.body, userId: "6407c71f3d8f7d221cf16c03" };
   const newInvoiceData = { ...req.body };
 
-  const duplicate = await Invoice.findOne({ id }).lean().exec();
+  const duplicate = await Invoice.findOne({ invoiceId }).lean().exec();
   if (duplicate) {
     return res.status(409).json({ message: "Invoice already exists" });
   }
 
   const newInvoice = await Invoice.create(newInvoiceData);
+  const allInvoices = await Invoice.find({userId}).lean();
   if (newInvoice) {
     // created
-    res.status(201).json({ message: `New invoice created` });
+    res.status(201).json({ message: `New invoice created`, invoices: allInvoices });
   } else {
     res.status(400).json({ message: "Invalid user data received" });
   }

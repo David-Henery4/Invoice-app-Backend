@@ -8,6 +8,10 @@ const invoiceSchema = new mongoose.Schema({
     required: true,
     ref: "User",
   },
+  invoiceId: {
+    type: String,
+    required: true
+  },
   createdAt: {
     type: String,
     required: true,
