@@ -52,9 +52,10 @@ const createNewInvoice = asyncHandler(async (req, res) => {
 // patch /invoices
 // access: private
 const editInvoice = asyncHandler(async (req, res) => {
-  const { id } = req.body; // might add userID as well to search for invoice
+  const { _id } = req.body; // might add userID as well to search for invoice
 
-  let invoice = await Invoice.findOne({ id }).exec();
+  
+  let invoice = await Invoice.findOne({ _id }).exec();
   if (!invoice) {
     return res.status(400).json({ message: "Invoice not found" });
   }
@@ -63,7 +64,7 @@ const editInvoice = asyncHandler(async (req, res) => {
   invoice = { ...req.body };
 
   // save the updated invoice to the database
-  const updatedInvoice = await Invoice.findOneAndUpdate({ id }, invoice, {
+  const updatedInvoice = await Invoice.findOneAndUpdate({ _id }, invoice, {
     new: true,
   });
 
