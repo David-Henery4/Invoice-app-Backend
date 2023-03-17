@@ -2,6 +2,7 @@ const User = require("../models/User");
 const Invoice = require("../models/Invoices");
 const jwt = require("jsonwebtoken");
 
+
 // bcrypt = hash password before saving
 const bcrypt = require("bcrypt");
 
