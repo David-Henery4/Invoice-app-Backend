@@ -102,9 +102,16 @@ const refresh = (req, res) => {
           },
         },
         process.env.ACCESS_TOKEN_SECRET,
-        { expiresIn: "5s" } // 15mins in prod
+        { expiresIn: "15m" } // 15mins in prod
       );
-      res.json({ accessToken });
+      res.json({
+        accessToken,
+        user: {
+          _id: foundUser.id,
+          username: foundUser.username,
+          accessToken,
+        },
+      });
     })
   );
 };
