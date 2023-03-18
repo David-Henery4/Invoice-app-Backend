@@ -170,7 +170,6 @@ const updateUser = asyncHandler(async (req, res) => {
 // * access: Private
 const deleteUser = asyncHandler(async (req, res) => {
   const {id} = req.body
-  console.log(id)
   if (!id){
     return res.status(400).json({message: "User ID required"})
   }
@@ -180,7 +179,8 @@ const deleteUser = asyncHandler(async (req, res) => {
   
   // find user
   const user = await User.findById(id).exec()
-  console.log(user)
+
+  
   if (!user){
     return res.status(400).json({message: "User not found"})
   }
