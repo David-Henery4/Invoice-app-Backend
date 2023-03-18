@@ -176,10 +176,8 @@ const deleteUser = asyncHandler(async (req, res) => {
   
   // Delete Invoices assigned to that user?
   
-  
   // find user
   const user = await User.findById(id).exec()
-
   
   if (!user){
     return res.status(400).json({message: "User not found"})
