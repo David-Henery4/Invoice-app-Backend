@@ -1,3 +1,4 @@
+
 // Only these can access the API
 const allowedOrigins = [
   "http://localhost:3500",
