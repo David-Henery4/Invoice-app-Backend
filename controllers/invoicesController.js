@@ -1,4 +1,3 @@
-const User = require("../models/User");
 const Invoice = require("../models/Invoices");
 
 const asyncHandler = require("express-async-handler");
@@ -11,26 +10,15 @@ const getAllInvoices = asyncHandler(async (req, res) => {
   const invoices = await Invoice.find({
     userId,
   }).lean();
-  // const invoices = await Invoice.find().lean();
-  // if (!invoices?.length) {
-  //   return res.status(400).json({ message: "no invoices found" });
-  // }
   res.json(invoices);
 });
-
-// might not need if we have all invoices already?
-// getSingleInvoice
-// get /invoices
-// access: private
 
 // createInvoice
 // post /invoices
 // access: private
 const createNewInvoice = asyncHandler(async (req, res) => {
   const { invoiceId, userId } = req.body;
-  // Need user ID (or something else) from user
-  // The one created by mongo
-  // const newInvoiceData = { ...req.body, userId: "6407c71f3d8f7d221cf16c03" };
+
   const newInvoiceData = { ...req.body };
 
   const duplicate = await Invoice.findOne({ invoiceId }).lean().exec();
@@ -52,8 +40,7 @@ const createNewInvoice = asyncHandler(async (req, res) => {
 // patch /invoices
 // access: private
 const editInvoice = asyncHandler(async (req, res) => {
-  const { _id } = req.body; // might add userID as well to search for invoice
-
+  const { _id } = req.body; 
   
   let invoice = await Invoice.findOne({ _id }).exec();
   if (!invoice) {

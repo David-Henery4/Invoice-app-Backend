@@ -4,14 +4,10 @@ const jwt = require("jsonwebtoken");
 // WANT TO PROTECT
 
 const verifyJwt = (req, res, next) => {
-  // good practice to check for both
-  // console.log(req.headers)
+
   const authHeader =
     req.headers.authorization || req.headers.Authorization;
-
   
-  // check for the token which as the worder "Bearer"
-  // with a space
   if(!authHeader?.startsWith("Bearer ")) {
     return res.status(401).json({message: "Unauthorized"})
   }
@@ -27,7 +23,6 @@ const verifyJwt = (req, res, next) => {
       next()
     }
   )
-
 };
 
 module.exports = verifyJwt;

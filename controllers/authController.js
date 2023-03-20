@@ -39,7 +39,7 @@ const login = asyncHandler(async (req, res) => {
   const refreshToken = jwt.sign(
     { username: foundUser.username },
     process.env.REFRESH_TOKEN_SECRET,
-    { expiresIn: "1d" }
+    { expiresIn: "7d" }
   );
 
   // Create secure cookie with refresh token
@@ -56,8 +56,6 @@ const login = asyncHandler(async (req, res) => {
   }).lean();
 
   // send accessToken containing Username
-  // (Might add an ID?) Although that might be in the user route
-  // res.json({ accessToken });
   res.json({
     user: {
       _id: foundUser.id,
@@ -66,12 +64,6 @@ const login = asyncHandler(async (req, res) => {
     },
     invoices,
   });
-  // client recieves the access token
-  // the server sets the cookie
-  // client application with react never handles the
-  // refresh token, inside the above cookie.
-  // when the client/react sends a request to the refresh end
-  // point, the cookie is sent along with it.
 });
 
 // description: Refresh
