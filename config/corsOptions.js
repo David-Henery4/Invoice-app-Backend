@@ -2,7 +2,7 @@ const allowedOrigins = require("./allowedOrigin")
 
 
 // !origin = will allow things like postman &
-// other origins
+// other origins "Will want to remove if for customer"
 const corsOptions = {
   origin: (origin,callback) => {
     if (allowedOrigins.indexOf(origin) !== -1 || !origin){
