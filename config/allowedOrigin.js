@@ -1,9 +1,11 @@
 
 // Only these can access the API
 const allowedOrigins = [
-  "http://localhost:3500",
-  "http://localhost:3000",
-  "http://127.0.0.1:5173",
+  "https://qk-invoices.netlify.app",
+  "https://www.qk-invoices.netlify.app",
+  // "http://localhost:3500",
+  // "http://localhost:3000",
+  // "http://127.0.0.1:5173",
   // "http://www.invoice-app.netlify",
   // "http://www.invoice-app.com",
   // "http://www.invoice-app.co.uk",
